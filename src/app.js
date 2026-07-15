@@ -55,12 +55,12 @@ function setupStoryAnimations() {
 
     blocks.forEach((block) => {
         const staged = block.querySelectorAll(
-            ':scope > .entry, :scope > .skill-grid > article, :scope > ul > li, :scope > .certs, :scope > .quick-links a'
+            ':scope > .entry, :scope > .integration-highlight > *, :scope > .skill-section > *, :scope > .skill-tags > *, :scope > ul > li, :scope > .achievement-grid > *, :scope > .education-grid > *, :scope > .cert-tags > *, :scope > .quick-links > a'
         );
 
         staged.forEach((item, index) => {
             item.classList.add('stage-item');
-            item.style.setProperty('--delay', `${index * 90}ms`);
+            item.style.setProperty('--delay', `${index * 80}ms`);
         });
     });
 
@@ -73,14 +73,14 @@ function setupStoryAnimations() {
                 block.classList.add('in-view');
 
                 block.querySelectorAll('[data-type]').forEach((el, idx) => {
-                    const speed = el.tagName === 'H1' ? 22 : 16;
-                    setTimeout(() => typeText(el, speed), idx * 120);
+                    const speed = el.tagName === 'H1' ? 22 : el.tagName === 'H2' ? 20 : 16;
+                    setTimeout(() => typeText(el, speed), idx * 100);
                 });
 
                 observer.unobserve(block);
             });
         },
-        { threshold: 0.2, rootMargin: '0px 0px -10% 0px' }
+        { threshold: 0.15, rootMargin: '0px 0px -10% 0px' }
     );
 
     blocks.forEach((block) => observer.observe(block));
